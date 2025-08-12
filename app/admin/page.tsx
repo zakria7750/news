@@ -81,9 +81,9 @@ const adminSections = [
     color: "bg-green-500",
   },
   {
-    title: "إدارة البحوث",
-    description: "مراجعة وإدارة البحوث المقدمة",
-    href: "/admin/research",
+    title: "إدارة الأبحاث",
+    description: "مراجعة طلبات النشر وإدارة الأبحاث المقبولة",
+    href: "/admin/research-management",
     icon: (
       <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
         <path
@@ -94,6 +94,22 @@ const adminSections = [
       </svg>
     ),
     color: "bg-purple-500",
+  },
+  {
+    title: "إدارة الأخبار والاشتراكات",
+    description: "نشر الأخبار وإدارة اشتراكات النشرة الإخبارية",
+    href: "/admin/news-subscriptions",
+    icon: (
+      <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fillRule="evenodd"
+          d="M2 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 002 2H4a2 2 0 01-2-2V5zm3 1h6v4H5V6zm6 6H5v2h6v-2z"
+          clipRule="evenodd"
+        />
+        <path d="M15 7h1a2 2 0 012 2v5.5a1.5 1.5 0 01-3 0V7z" />
+      </svg>
+    ),
+    color: "bg-green-500",
   },
   {
     title: "الإعدادات",
@@ -184,15 +200,24 @@ export default function AdminDashboard() {
             <div className="bg-white rounded-xl shadow-sm border p-6">
               <h2 className="text-xl font-bold text-[#001f3f] mb-4">إجراءات سريعة</h2>
               <div className="space-y-3">
-                <button className="w-full bg-[#001f3f] text-white py-3 px-4 rounded-lg hover:bg-[#003366] transition-colors text-right">
+                <Link
+                  href="/admin/editorial-board"
+                  className="block w-full bg-[#001f3f] text-white py-3 px-4 rounded-lg hover:bg-[#003366] transition-colors text-right"
+                >
                   إضافة عضو جديد
-                </button>
-                <button className="w-full bg-[#FFD700] text-[#001f3f] py-3 px-4 rounded-lg hover:bg-yellow-400 transition-colors text-right font-semibold">
-                  نشر عدد جديد
-                </button>
-                <button className="w-full border border-[#001f3f] text-[#001f3f] py-3 px-4 rounded-lg hover:bg-[#001f3f] hover:text-white transition-colors text-right">
+                </Link>
+                <Link
+                  href="/admin/news-subscriptions"
+                  className="block w-full bg-[#FFD700] text-[#001f3f] py-3 px-4 rounded-lg hover:bg-yellow-400 transition-colors text-right font-semibold"
+                >
+                  نشر خبر جديد
+                </Link>
+                <Link
+                  href="/admin/research-management"
+                  className="block w-full border border-[#001f3f] text-[#001f3f] py-3 px-4 rounded-lg hover:bg-[#001f3f] hover:text-white transition-colors text-right"
+                >
                   مراجعة البحوث
-                </button>
+                </Link>
                 <button className="w-full border border-gray-300 text-gray-700 py-3 px-4 rounded-lg hover:bg-gray-50 transition-colors text-right">
                   إدارة المحتوى
                 </button>

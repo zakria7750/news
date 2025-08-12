@@ -1,18 +1,282 @@
-export default function ContactPage() {
-  return (
-    <div className="min-h-screen py-16">
-      <div className="container-custom">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl font-bold text-[#001f3f] mb-8 text-center">تواصل معنا</h1>
+"use client"
 
-          <div className="bg-white rounded-lg shadow-sm p-8 border">
-            <div className="text-center text-gray-600">
-              <p className="text-lg mb-4">هذه الصفحة قيد الإنشاء</p>
-              <p>سيتم إضافة معلومات التواصل ونموذج الاتصال قريباً</p>
+import type React from "react"
+
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { Card, CardContent } from "@/components/ui/card"
+import { Mail, Phone, MapPin, Clock, Send, MessageCircle, Users, Award } from "lucide-react"
+
+export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: "",
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState("")
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    // محاكاة إرسال النموذج
+    await new Promise((resolve) => setTimeout(resolve, 2000))
+
+    setSubmitMessage("تم إرسال رسالتك بنجاح! سنتواصل معك قريباً.")
+    setFormData({ name: "", email: "", subject: "", message: "" })
+    setIsSubmitting(false)
+
+    setTimeout(() => setSubmitMessage(""), 5000)
+  }
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <section className="relative bg-gradient-to-br from-[#001f3f] via-[#002a5c] to-[#001f3f] py-20 overflow-hidden">
+        <div className="absolute inset-0 bg-[url('/academic-research-books.png')] bg-cover bg-center opacity-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-[#001f3f]/90 to-[#001f3f]/70"></div>
+
+        <div className="container-custom relative z-10">
+          <div className="max-w-4xl mx-auto text-center text-white">
+            <div className="inline-flex items-center justify-center w-20 h-20 bg-[#FFD700]/20 rounded-full mb-6">
+              <MessageCircle className="w-10 h-10 text-[#FFD700]" />
+            </div>
+            <h1 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white to-[#FFD700] bg-clip-text text-transparent">
+              تواصل معنا
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-200 leading-relaxed max-w-3xl mx-auto">
+              نحن هنا للإجابة على استفساراتكم ومساعدتكم في رحلتكم البحثية والأكاديمية
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form & Info Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container-custom">
+          <div className="grid lg:grid-cols-2 gap-12 max-w-7xl mx-auto">
+            {/* Contact Form */}
+            <div className="order-2 lg:order-1">
+              <Card className="shadow-2xl border-0 overflow-hidden">
+                <div className="bg-gradient-to-r from-[#001f3f] to-[#002a5c] p-8">
+                  <h2 className="text-3xl font-bold text-white mb-2">أرسل لنا رسالة</h2>
+                  <p className="text-gray-200">سنكون سعداء للتواصل معك والإجابة على استفساراتك</p>
+                </div>
+
+                <CardContent className="p-8">
+                  {submitMessage && (
+                    <div className="mb-6 p-4 bg-green-50 border border-green-200 rounded-lg text-green-800 text-center">
+                      {submitMessage}
+                    </div>
+                  )}
+
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">الاسم الكامل *</label>
+                        <Input
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="h-12 border-2 border-gray-200 focus:border-[#FFD700] transition-colors"
+                          placeholder="أدخل اسمك الكامل"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-semibold text-gray-700 mb-2">البريد الإلكتروني *</label>
+                        <Input
+                          name="email"
+                          type="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="h-12 border-2 border-gray-200 focus:border-[#FFD700] transition-colors"
+                          placeholder="example@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">موضوع الرسالة *</label>
+                      <Input
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleInputChange}
+                        required
+                        className="h-12 border-2 border-gray-200 focus:border-[#FFD700] transition-colors"
+                        placeholder="موضوع رسالتك"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="block text-sm font-semibold text-gray-700 mb-2">الرسالة *</label>
+                      <Textarea
+                        name="message"
+                        value={formData.message}
+                        onChange={handleInputChange}
+                        required
+                        rows={6}
+                        className="border-2 border-gray-200 focus:border-[#FFD700] transition-colors resize-none"
+                        placeholder="اكتب رسالتك هنا..."
+                      />
+                    </div>
+
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full h-14 bg-gradient-to-r from-[#FFD700] to-[#FFA500] hover:from-[#FFA500] hover:to-[#FFD700] text-[#001f3f] font-bold text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+                    >
+                      {isSubmitting ? (
+                        <div className="flex items-center gap-2">
+                          <div className="w-5 h-5 border-2 border-[#001f3f] border-t-transparent rounded-full animate-spin"></div>
+                          جاري الإرسال...
+                        </div>
+                      ) : (
+                        <div className="flex items-center gap-2">
+                          <Send className="w-5 h-5" />
+                          إرسال الرسالة
+                        </div>
+                      )}
+                    </Button>
+                  </form>
+                </CardContent>
+              </Card>
+            </div>
+
+            {/* Contact Information */}
+            <div className="order-1 lg:order-2 space-y-8">
+              <div>
+                <h2 className="text-3xl font-bold text-[#001f3f] mb-6">معلومات التواصل</h2>
+                <p className="text-gray-600 text-lg leading-relaxed mb-8">
+                  نحن متاحون للتواصل معكم في أي وقت. لا تترددوا في الاتصال بنا للحصول على المساعدة أو الاستفسار عن
+                  خدماتنا.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <Card className="border-r-4 border-r-[#FFD700] shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#001f3f] rounded-full flex items-center justify-center">
+                        <Mail className="w-6 h-6 text-[#FFD700]" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-[#001f3f] mb-2">البريد الإلكتروني</h3>
+                        <p className="text-gray-600">info@waei-journal.com</p>
+                        <p className="text-gray-600">editor@waei-journal.com</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-r-4 border-r-[#FFD700] shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#001f3f] rounded-full flex items-center justify-center">
+                        <Phone className="w-6 h-6 text-[#FFD700]" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-[#001f3f] mb-2">الهاتف</h3>
+                        <p className="text-gray-600">+966 11 123 4567</p>
+                        <p className="text-gray-600">+966 50 123 4567</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-r-4 border-r-[#FFD700] shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#001f3f] rounded-full flex items-center justify-center">
+                        <MapPin className="w-6 h-6 text-[#FFD700]" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-[#001f3f] mb-2">العنوان</h3>
+                        <p className="text-gray-600">أكاديمية المعرفة الدولية</p>
+                        <p className="text-gray-600">الرياض، المملكة العربية السعودية</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-r-4 border-r-[#FFD700] shadow-lg hover:shadow-xl transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="flex items-start gap-4">
+                      <div className="flex-shrink-0 w-12 h-12 bg-[#001f3f] rounded-full flex items-center justify-center">
+                        <Clock className="w-6 h-6 text-[#FFD700]" />
+                      </div>
+                      <div>
+                        <h3 className="font-bold text-[#001f3f] mb-2">ساعات العمل</h3>
+                        <p className="text-gray-600">الأحد - الخميس: 8:00 ص - 5:00 م</p>
+                        <p className="text-gray-600">الجمعة - السبت: مغلق</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Why Contact Us Section */}
+      <section className="py-20 bg-white">
+        <div className="container-custom">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-16">
+              <h2 className="text-4xl font-bold text-[#001f3f] mb-6">لماذا تتواصل معنا؟</h2>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                نحن ملتزمون بتقديم أفضل الخدمات والدعم للباحثين والأكاديميين
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card className="text-center p-8 border-2 border-gray-100 hover:border-[#FFD700] transition-all duration-300 hover:shadow-xl group">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Users className="w-8 h-8 text-[#FFD700]" />
+                </div>
+                <h3 className="text-xl font-bold text-[#001f3f] mb-4">دعم الباحثين</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  نقدم الدعم الكامل للباحثين في جميع مراحل النشر والتحكيم العلمي
+                </p>
+              </Card>
+
+              <Card className="text-center p-8 border-2 border-gray-100 hover:border-[#FFD700] transition-all duration-300 hover:shadow-xl group">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <MessageCircle className="w-8 h-8 text-[#FFD700]" />
+                </div>
+                <h3 className="text-xl font-bold text-[#001f3f] mb-4">استجابة سريعة</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  نلتزم بالرد على جميع الاستفسارات خلال 24 ساعة من استلامها
+                </p>
+              </Card>
+
+              <Card className="text-center p-8 border-2 border-gray-100 hover:border-[#FFD700] transition-all duration-300 hover:shadow-xl group">
+                <div className="w-16 h-16 bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Award className="w-8 h-8 text-[#FFD700]" />
+                </div>
+                <h3 className="text-xl font-bold text-[#001f3f] mb-4">خبرة أكاديمية</h3>
+                <p className="text-gray-600 leading-relaxed">
+                  فريق من الخبراء الأكاديميين المتخصصين في مختلف المجالات العلمية
+                </p>
+              </Card>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
