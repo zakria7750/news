@@ -3,25 +3,11 @@
 import type React from "react"
 import Link from "next/link"
 import { useState } from "react"
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Facebook,
-  Twitter,
-  Instagram,
-  Linkedin,
-  Youtube,
-  Globe,
-  Award,
-  BookOpen,
-  Users,
-  ChevronUp,
-  Loader2,
-} from "lucide-react"
+import { Phone, Mail, MapPin, ChevronUp, Loader2, BookOpen, Users, Award, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { subscribeToNewsletter } from "@/app/actions/news-actions"
 import { toast } from "sonner"
+import Image from "next/image"
 
 export default function Footer() {
   const [isSubscribing, setIsSubscribing] = useState(false)
@@ -72,12 +58,18 @@ export default function Footer() {
 
       {/* Main Footer Content */}
       <div className="container mx-auto px-4 pt-16 pb-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 gap-8">
           {/* Magazine Info */}
-          <div className="space-y-6">
+          <div className="space-y-6 sm:col-span-2 md:col-span-1">
             <div className="flex items-center space-x-3 space-x-reverse">
-              <div className="w-12 h-12 bg-[#FFD700] rounded-full flex items-center justify-center">
-                <span className="text-[#001f3f] font-bold text-xl">و</span>
+              <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center p-2">
+                <Image
+                  src="/images/waei-logo.png"
+                  alt="شعار مجلة وعي"
+                  width={48}
+                  height={48}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h3 className="text-xl font-bold text-[#FFD700]">مجلة وعي</h3>
@@ -86,140 +78,81 @@ export default function Footer() {
             </div>
 
             <p className="text-gray-300 leading-relaxed">
-              مجلة أكاديمية محكمة تصدر عن أكاديمية المعرفة الدولية، تهدف إلى نشر البحوث والدراسات الأكاديمية المتميزة في
-              مختلف المجالات العلمية والإنسانية.
+              مجلة أكاديمية محكمة تهدف إلى نشر البحوث والدراسات الأكاديمية المتميزة في مختلف المجالات العلمية
+              والإنسانية.
             </p>
-
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-3 bg-[#001f3f]/50 rounded-lg">
-                <div className="text-[#FFD700] font-bold text-lg">ربع سنوية</div>
-                <div className="text-xs text-gray-300">دورية الإصدار</div>
-              </div>
-              <div className="text-center p-3 bg-[#001f3f]/50 rounded-lg">
-                <div className="text-[#FFD700] font-bold text-lg">إلكترونية</div>
-                <div className="text-xs text-gray-300">نوع النشر</div>
-              </div>
-            </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold text-[#FFD700] border-b border-[#FFD700]/30 pb-2">روابط سريعة</h4>
-            <ul className="space-y-3">
-              {[
-                { name: "الرئيسية", href: "/", icon: BookOpen },
-                { name: "عن المجلة", href: "/about", icon: Users },
-                { name: "هيئة التحرير", href: "/editorial-board", icon: Users },
-                { name: "تعليمات النشر", href: "/submission-guidelines", icon: BookOpen },
-                { name: "الأعداد", href: "/issues", icon: Award },
-                { name: "تقديم بحث", href: "/submit", icon: Globe },
-              ].map((link) => {
-                const Icon = link.icon
-                return (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="flex items-center space-x-2 space-x-reverse text-gray-300 hover:text-[#FFD700] transition-colors duration-200 group"
-                    >
-                      <Icon size={16} className="group-hover:scale-110 transition-transform duration-200" />
-                      <span>{link.name}</span>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-
-          {/* Academic Sections */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold text-[#FFD700] border-b border-[#FFD700]/30 pb-2">
-              أكاديمية المعرفة الدولية
-            </h4>
-            <ul className="space-y-3">
-              {[
-                "عن الأكاديمية",
-                "البرامج التعليمية",
-                "هيئة التدريس",
-                "الاعتمادات",
-                "الشراكات الدولية",
-                "التحقق من الشهادات",
-              ].map((item) => (
-                <li key={item}>
-                  <Link
-                    href={`#`}
-                    className="text-gray-300 hover:text-[#FFD700] transition-colors duration-200 hover:translate-x-1 inline-block"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-6">
-            <h4 className="text-lg font-bold text-[#FFD700] border-b border-[#FFD700]/30 pb-2">تواصل معنا</h4>
-
-            <div className="space-y-4">
-              <div className="flex items-start space-x-3 space-x-reverse">
-                <div className="w-8 h-8 bg-[#FFD700]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
-                  <MapPin size={16} className="text-[#FFD700]" />
-                </div>
-                <div>
-                  <p className="text-gray-300 text-sm leading-relaxed">
-                    المملكة العربية السعودية
-                    <br />
-                    الرياض - حي الملك فهد
-                    <br />
-                    ص.ب: 12345
-                  </p>
-                </div>
+          <div className="sm:col-span-2 md:col-span-1">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              {/* Quick Links */}
+              <div className="space-y-6">
+                <h4 className="text-lg font-bold text-[#FFD700] border-b border-[#FFD700]/30 pb-2">روابط سريعة</h4>
+                <ul className="space-y-3">
+                  {[
+                    { name: "الرئيسية", href: "/", icon: BookOpen },
+                    { name: "عن المجلة", href: "/about", icon: Users },
+                    { name: "هيئة التحرير", href: "/editorial-board", icon: Users },
+                    { name: "تعليمات النشر", href: "/submission-guidelines", icon: BookOpen },
+                    { name: "الأعداد", href: "/issues", icon: Award },
+                    { name: "تقديم بحث", href: "/submit", icon: Globe },
+                  ].map((link) => {
+                    const Icon = link.icon
+                    return (
+                      <li key={link.name}>
+                        <Link
+                          href={link.href}
+                          className="flex items-center space-x-2 space-x-reverse text-gray-300 hover:text-[#FFD700] transition-colors duration-200 group"
+                        >
+                          <Icon size={16} className="group-hover:scale-110 transition-transform duration-200" />
+                          <span className="text-sm">{link.name}</span>
+                        </Link>
+                      </li>
+                    )
+                  })}
+                </ul>
               </div>
 
-              <div className="flex items-center space-x-3 space-x-reverse">
-                <div className="w-8 h-8 bg-[#FFD700]/20 rounded-full flex items-center justify-center">
-                  <Phone size={16} className="text-[#FFD700]" />
-                </div>
-                <div>
-                  <p className="text-gray-300 text-sm">+966 11 123 4567</p>
-                  <p className="text-gray-300 text-sm">+966 50 123 4567</p>
-                </div>
-              </div>
+              {/* Contact Info */}
+              <div className="space-y-6">
+                <h4 className="text-lg font-bold text-[#FFD700] border-b border-[#FFD700]/30 pb-2">تواصل معنا</h4>
 
-              <div className="flex items-center space-x-3 space-x-reverse">
-                <div className="w-8 h-8 bg-[#FFD700]/20 rounded-full flex items-center justify-center">
-                  <Mail size={16} className="text-[#FFD700]" />
-                </div>
-                <div>
-                  <p className="text-gray-300 text-sm">info@waei-magazine.com</p>
-                  <p className="text-gray-300 text-sm">editor@waei-magazine.com</p>
-                </div>
-              </div>
-            </div>
+                <div className="space-y-4">
+                  <div className="flex items-start space-x-3 space-x-reverse">
+                    <div className="w-8 h-8 bg-[#FFD700]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <MapPin size={16} className="text-[#FFD700]" />
+                    </div>
+                    <div>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        المملكة العربية السعودية
+                        <br />
+                        الرياض - حي الملك فهد
+                        <br />
+                        ص.ب: 12345
+                      </p>
+                    </div>
+                  </div>
 
-            {/* Social Media */}
-            <div>
-              <h5 className="text-[#FFD700] font-semibold mb-3">تابعنا على</h5>
-              <div className="flex space-x-3 space-x-reverse">
-                {[
-                  { icon: Facebook, href: "#", color: "hover:bg-blue-600" },
-                  { icon: Twitter, href: "#", color: "hover:bg-sky-500" },
-                  { icon: Instagram, href: "#", color: "hover:bg-pink-600" },
-                  { icon: Linkedin, href: "#", color: "hover:bg-blue-700" },
-                  { icon: Youtube, href: "#", color: "hover:bg-red-600" },
-                ].map((social, index) => {
-                  const Icon = social.icon
-                  return (
-                    <a
-                      key={index}
-                      href={social.href}
-                      className={`w-10 h-10 bg-[#FFD700]/20 rounded-full flex items-center justify-center text-[#FFD700] transition-all duration-200 ${social.color} hover:text-white hover:scale-110`}
-                    >
-                      <Icon size={18} />
-                    </a>
-                  )
-                })}
+                  <div className="flex items-center space-x-3 space-x-reverse">
+                    <div className="w-8 h-8 bg-[#FFD700]/20 rounded-full flex items-center justify-center">
+                      <Phone size={16} className="text-[#FFD700]" />
+                    </div>
+                    <div>
+                      <p className="text-gray-300 text-sm">+966 11 123 4567</p>
+                      <p className="text-gray-300 text-sm">+966 50 123 4567</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center space-x-3 space-x-reverse">
+                    <div className="w-8 h-8 bg-[#FFD700]/20 rounded-full flex items-center justify-center">
+                      <Mail size={16} className="text-[#FFD700]" />
+                    </div>
+                    <div>
+                      <p className="text-gray-300 text-sm">info@waei-magazine.com</p>
+                      <p className="text-gray-300 text-sm">editor@waei-magazine.com</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -261,7 +194,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-[#FFD700]/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-center md:text-right">
-              <p className="text-gray-300 text-sm">© 2024 مجلة وعي - أكاديمية المعرفة الدولية. جميع الحقوق محفوظة.</p>
+              <p className="text-gray-300 text-sm">© 2024 مجلة وعي. جميع الحقوق محفوظة.</p>
             </div>
 
             <div className="flex flex-wrap justify-center md:justify-end space-x-6 space-x-reverse text-sm">

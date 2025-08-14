@@ -103,6 +103,24 @@ export async function getNews() {
   }
 }
 
+export async function getNewsById(newsId: string) {
+  try {
+    const supabase = await createClient()
+
+    const { data: news, error } = await supabase.from("news").select("*").eq("id", newsId).single()
+
+    if (error) {
+      console.error("Error fetching news by ID:", error)
+      return { success: false, data: null }
+    }
+
+    return { success: true, data: news }
+  } catch (error) {
+    console.error("Unexpected error:", error)
+    return { success: false, data: null }
+  }
+}
+
 export async function getNewsletterSubscriptions() {
   try {
     const supabase = await createClient()

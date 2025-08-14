@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Calendar, Globe, Hash, Languages, ArrowLeft, Sparkles, Clock, Eye } from "lucide-react"
+import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye } from "lucide-react"
 import { getNews } from "@/app/actions/news-actions"
 import Image from "next/image"
 
@@ -12,7 +12,7 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen">
       {/* قسم الهيرو */}
-      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* خلفية الصورة مع تأثير parallax */}
         <div
           className="absolute inset-0 bg-gradient-to-br from-[#001f3f]/90 to-[#001f3f]/75 transition-all duration-700"
@@ -25,7 +25,7 @@ export default async function HomePage() {
 
         {/* تأثير الجسيمات المتحركة */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-[#FFD700] rounded-full animate-pulse"></div>
+          <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full animate-pulse"></div>
           <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-white rounded-full animate-ping"></div>
           <div className="absolute bottom-1/4 left-1/3 w-1.5 h-1.5 bg-[#FFD700] rounded-full animate-bounce"></div>
         </div>
@@ -82,27 +82,7 @@ export default async function HomePage() {
             </Button>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-6 max-w-6xl mx-auto animate-cards-up">
-            <Card className="bg-white/25 backdrop-blur-md border-white/40 text-white hover:bg-white/30 hover:scale-105 transition-all duration-300 hover:shadow-2xl group">
-              <CardContent className="p-3 md:p-6 text-center">
-                <Calendar className="w-5 h-5 md:w-8 md:h-8 mx-auto mb-2 md:mb-3 text-[#FFD700] group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="font-bold text-sm md:text-lg mb-1 md:mb-2">دورية الإصدار</h3>
-                <p className="text-xs md:text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                  ربع سنوية
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-white/25 backdrop-blur-md border-white/40 text-white hover:bg-white/30 hover:scale-105 transition-all duration-300 hover:shadow-2xl group">
-              <CardContent className="p-3 md:p-6 text-center">
-                <Globe className="w-5 h-5 md:w-8 md:h-8 mx-auto mb-2 md:mb-3 text-[#FFD700] group-hover:scale-110 transition-transform duration-300" />
-                <h3 className="font-bold text-sm md:text-lg mb-1 md:mb-2">نوع النشر</h3>
-                <p className="text-xs md:text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-300">
-                  إلكترونية
-                </p>
-              </CardContent>
-            </Card>
-
+          <div className="grid grid-cols-2 gap-3 md:gap-6 max-w-4xl mx-auto animate-cards-up">
             <Card className="bg-white/25 backdrop-blur-md border-white/40 text-white hover:bg-white/30 hover:scale-105 transition-all duration-300 hover:shadow-2xl group">
               <CardContent className="p-3 md:p-6 text-center">
                 <Hash className="w-5 h-5 md:w-8 md:h-8 mx-auto mb-2 md:mb-3 text-[#FFD700] group-hover:scale-110 transition-transform duration-300" />
@@ -173,7 +153,7 @@ export default async function HomePage() {
                       size="sm"
                       className="border-[#001f3f] text-[#001f3f] hover:bg-[#001f3f] hover:text-white transition-all duration-300 group/btn bg-transparent"
                     >
-                      <Link href="/news" className="flex items-center gap-2">
+                      <Link href={`/news/${news.id}`} className="flex items-center gap-2">
                         <Eye className="w-4 h-4 group-hover/btn:scale-110 transition-transform duration-300" />
                         اقرأ المزيد
                       </Link>
