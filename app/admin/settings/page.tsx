@@ -331,22 +331,22 @@ export default function AdminSettingsPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
-        <div className="px-6 py-4 flex items-center justify-between">
+        <div className="px-4 sm:px-6 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-[#001f3f]">إدارة الإعدادات</h1>
-            <p className="text-gray-600 mt-1">إدارة المجلدات والأعداد</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-[#001f3f]">إدارة الإعدادات</h1>
+            <p className="text-sm sm:text-base text-gray-600 mt-1">إدارة المجلدات والأعداد</p>
           </div>
-          <div className="flex items-center space-x-4 space-x-reverse">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 w-full sm:w-auto">
             <Button
               onClick={() => setShowVolumeModal(true)}
-              className="bg-[#001f3f] text-white hover:bg-[#003366] flex items-center space-x-2 space-x-reverse"
+              className="bg-[#001f3f] text-white hover:bg-[#003366] flex items-center justify-center space-x-2 space-x-reverse text-sm sm:text-base py-2 px-3 sm:px-4"
             >
               <Plus className="w-4 h-4" />
               <span>إضافة مجلد</span>
             </Button>
             <Button
               onClick={() => setShowIssueModal(true)}
-              className="bg-[#FFD700] text-[#001f3f] hover:bg-yellow-400 flex items-center space-x-2 space-x-reverse"
+              className="bg-[#FFD700] text-[#001f3f] hover:bg-yellow-400 flex items-center justify-center space-x-2 space-x-reverse text-sm sm:text-base py-2 px-3 sm:px-4"
             >
               <Plus className="w-4 h-4" />
               <span>إضافة عدد</span>
@@ -355,79 +355,82 @@ export default function AdminSettingsPage() {
         </div>
       </div>
 
-      <div className="p-6">
-        <Tabs defaultValue="issues" className="space-y-6">
-          <TabsList className="grid w-full grid-cols-2 max-w-md">
-            <TabsTrigger value="issues" className="flex items-center gap-2">
-              <BookOpen className="w-4 h-4" />
+      <div className="p-4 sm:p-6">
+        <Tabs defaultValue="issues" className="space-y-4 sm:space-y-6">
+          <TabsList className="grid w-full grid-cols-2 max-w-md mx-auto sm:mx-0">
+            <TabsTrigger value="issues" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+              <BookOpen className="w-3 h-3 sm:w-4 sm:h-4" />
               الأعداد
             </TabsTrigger>
-            <TabsTrigger value="volumes" className="flex items-center gap-2">
-              <FolderOpen className="w-4 h-4" />
+            <TabsTrigger value="volumes" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+              <FolderOpen className="w-3 h-3 sm:w-4 sm:h-4" />
               المجلدات
             </TabsTrigger>
           </TabsList>
 
           {/* تبويب الأعداد */}
-          <TabsContent value="issues" className="space-y-6">
-            <div className="grid gap-6">
+          <TabsContent value="issues" className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6">
               {issues.length === 0 ? (
                 <Card>
-                  <CardContent className="flex flex-col items-center justify-center py-12">
-                    <BookOpen className="w-12 h-12 text-gray-400 mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">لا توجد أعداد</h3>
-                    <p className="text-gray-500 text-center">لم يتم إنشاء أي أعداد بعد</p>
+                  <CardContent className="flex flex-col items-center justify-center py-8 sm:py-12">
+                    <BookOpen className="w-8 h-8 sm:w-12 sm:h-12 text-gray-400 mb-4" />
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">لا توجد أعداد</h3>
+                    <p className="text-sm sm:text-base text-gray-500 text-center">لم يتم إنشاء أي أعداد بعد</p>
                   </CardContent>
                 </Card>
               ) : (
                 issues.map((issue) => (
                   <Card key={issue.id} className="hover:shadow-md transition-shadow">
                     <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3 space-x-reverse">
-                          <div className="w-12 h-12 bg-[#001f3f] rounded-lg flex items-center justify-center text-white font-bold">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+                        <div className="flex items-start sm:items-center space-x-3 space-x-reverse flex-1">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#001f3f] rounded-lg flex items-center justify-center text-white font-bold text-xs sm:text-sm flex-shrink-0">
                             {issue.volume_number}-{issue.issue_number}
                           </div>
-                          <div>
-                            <CardTitle className="text-[#001f3f] text-lg">{issue.title}</CardTitle>
-                            <p className="text-sm text-gray-600 mt-1">{issue.description}</p>
+                          <div className="min-w-0 flex-1">
+                            <CardTitle className="text-[#001f3f] text-base sm:text-lg leading-tight">
+                              {issue.title}
+                            </CardTitle>
+                            <p className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2">{issue.description}</p>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-2 space-x-reverse">
+                        <div className="flex items-center space-x-2 space-x-reverse w-full sm:w-auto justify-end">
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => handleManageResearch(issue)}
-                            className="text-[#FFD700] border-[#FFD700] hover:bg-[#FFD700] hover:text-[#001f3f]"
+                            className="text-[#FFD700] border-[#FFD700] hover:bg-[#FFD700] hover:text-[#001f3f] text-xs sm:text-sm px-2 sm:px-3"
                           >
-                            <Users className="w-4 h-4" />
+                            <Users className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="hidden sm:inline ml-1">الأبحاث</span>
                           </Button>
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => handleEditIssue(issue)}
-                            className="text-[#001f3f] border-[#001f3f] hover:bg-[#001f3f] hover:text-white"
+                            className="text-[#001f3f] border-[#001f3f] hover:bg-[#001f3f] hover:text-white text-xs sm:text-sm px-2 sm:px-3"
                           >
-                            <Edit className="w-4 h-4" />
+                            <Edit className="w-3 h-3 sm:w-4 sm:h-4" />
                           </Button>
                           <AlertDialog>
                             <AlertDialogTrigger asChild>
-                              <Button variant="destructive" size="sm">
-                                <Trash2 className="w-4 h-4" />
+                              <Button variant="destructive" size="sm" className="text-xs sm:text-sm px-2 sm:px-3">
+                                <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent>
+                            <AlertDialogContent className="mx-4 max-w-md">
                               <AlertDialogHeader>
-                                <AlertDialogTitle>تأكيد الحذف</AlertDialogTitle>
-                                <AlertDialogDescription>
+                                <AlertDialogTitle className="text-base sm:text-lg">تأكيد الحذف</AlertDialogTitle>
+                                <AlertDialogDescription className="text-sm sm:text-base">
                                   هل أنت متأكد من حذف هذا العدد؟ لا يمكن التراجع عن هذا الإجراء.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
-                              <AlertDialogFooter>
-                                <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                              <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+                                <AlertDialogCancel className="w-full sm:w-auto">إلغاء</AlertDialogCancel>
                                 <AlertDialogAction
                                   onClick={() => handleDeleteIssue(issue.id)}
-                                  className="bg-red-600 hover:bg-red-700"
+                                  className="bg-red-600 hover:bg-red-700 w-full sm:w-auto"
                                 >
                                   حذف
                                 </AlertDialogAction>
@@ -438,17 +441,17 @@ export default function AdminSettingsPage() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="flex items-center space-x-4 space-x-reverse text-sm text-gray-500">
+                      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 sm:space-x-reverse text-xs sm:text-sm text-gray-500">
                         <div className="flex items-center space-x-1 space-x-reverse">
-                          <Calendar className="w-4 h-4" />
+                          <Calendar className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                           <span>{new Date(issue.publication_date).toLocaleDateString("ar-SA")}</span>
                         </div>
                         <div className="flex items-center space-x-1 space-x-reverse">
-                          <FolderOpen className="w-4 h-4" />
+                          <FolderOpen className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                           <span>المجلد {issue.volume_number}</span>
                         </div>
                         <div className="flex items-center space-x-1 space-x-reverse">
-                          <FileText className="w-4 h-4" />
+                          <FileText className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                           <span>{allResearch.filter((r) => r.issue_id === issue.id).length} بحث</span>
                         </div>
                       </div>
@@ -460,58 +463,60 @@ export default function AdminSettingsPage() {
           </TabsContent>
 
           {/* تبويب المجلدات */}
-          <TabsContent value="volumes" className="space-y-6">
-            <div className="grid gap-6">
+          <TabsContent value="volumes" className="space-y-4 sm:space-y-6">
+            <div className="grid gap-4 sm:gap-6">
               {volumes.length === 0 ? (
                 <Card>
-                  <CardContent className="flex flex-col items-center justify-center py-12">
-                    <FolderOpen className="w-12 h-12 text-gray-400 mb-4" />
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">لا توجد مجلدات</h3>
-                    <p className="text-gray-500 text-center">لم يتم إنشاء أي مجلدات بعد</p>
+                  <CardContent className="flex flex-col items-center justify-center py-8 sm:py-12">
+                    <FolderOpen className="w-8 h-8 sm:w-12 sm:h-12 text-gray-400 mb-4" />
+                    <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-2">لا توجد مجلدات</h3>
+                    <p className="text-sm sm:text-base text-gray-500 text-center">لم يتم إنشاء أي مجلدات بعد</p>
                   </CardContent>
                 </Card>
               ) : (
                 volumes.map((volume) => (
                   <Card key={volume.id} className="hover:shadow-md transition-shadow">
                     <CardHeader className="pb-3">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3 space-x-reverse">
-                          <div className="w-12 h-12 bg-[#FFD700] rounded-lg flex items-center justify-center text-[#001f3f] font-bold">
+                      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
+                        <div className="flex items-start sm:items-center space-x-3 space-x-reverse flex-1">
+                          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#FFD700] rounded-lg flex items-center justify-center text-[#001f3f] font-bold text-sm sm:text-base flex-shrink-0">
                             {volume.volume_number}
                           </div>
-                          <div>
-                            <CardTitle className="text-[#001f3f] text-lg">{volume.title}</CardTitle>
-                            <p className="text-sm text-gray-600 mt-1">{volume.description}</p>
+                          <div className="min-w-0 flex-1">
+                            <CardTitle className="text-[#001f3f] text-base sm:text-lg leading-tight">
+                              {volume.title}
+                            </CardTitle>
+                            <p className="text-xs sm:text-sm text-gray-600 mt-1 line-clamp-2">{volume.description}</p>
                           </div>
                         </div>
-                        <div className="flex items-center space-x-2 space-x-reverse">
+                        <div className="flex items-center space-x-2 space-x-reverse w-full sm:w-auto justify-end">
                           <Button
                             variant="outline"
                             size="sm"
                             onClick={() => handleEditVolume(volume)}
-                            className="text-[#001f3f] border-[#001f3f] hover:bg-[#001f3f] hover:text-white"
+                            className="text-[#001f3f] border-[#001f3f] hover:bg-[#001f3f] hover:text-white text-xs sm:text-sm px-2 sm:px-3"
                           >
-                            <Edit className="w-4 h-4" />
+                            <Edit className="w-3 h-3 sm:w-4 sm:h-4" />
                           </Button>
                           <AlertDialog>
                             <AlertDialogTrigger asChild>
-                              <Button variant="destructive" size="sm">
-                                <Trash2 className="w-4 h-4" />
+                              <Button variant="destructive" size="sm" className="text-xs sm:text-sm px-2 sm:px-3">
+                                <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                               </Button>
                             </AlertDialogTrigger>
-                            <AlertDialogContent>
+                            <AlertDialogContent className="mx-4 max-w-md">
                               <AlertDialogHeader>
-                                <AlertDialogTitle>تأكيد الحذف</AlertDialogTitle>
-                                <AlertDialogDescription>
+                                <AlertDialogTitle className="text-base sm:text-lg">تأكيد الحذف</AlertDialogTitle>
+                                <AlertDialogDescription className="text-sm sm:text-base">
                                   هل أنت متأكد من حذف هذا المجلد؟ سيتم حذف جميع الأعداد المرتبطة به أيضاً. لا يمكن
                                   التراجع عن هذا الإجراء.
                                 </AlertDialogDescription>
                               </AlertDialogHeader>
-                              <AlertDialogFooter>
-                                <AlertDialogCancel>إلغاء</AlertDialogCancel>
+                              <AlertDialogFooter className="flex-col sm:flex-row gap-2">
+                                <AlertDialogCancel className="w-full sm:w-auto">إلغاء</AlertDialogCancel>
                                 <AlertDialogAction
                                   onClick={() => handleDeleteVolume(volume.id)}
-                                  className="bg-red-600 hover:bg-red-700"
+                                  className="bg-red-600 hover:bg-red-700 w-full sm:w-auto"
                                 >
                                   حذف
                                 </AlertDialogAction>
@@ -522,13 +527,13 @@ export default function AdminSettingsPage() {
                       </div>
                     </CardHeader>
                     <CardContent>
-                      <div className="flex items-center space-x-4 space-x-reverse text-sm text-gray-500">
+                      <div className="flex flex-col sm:flex-row sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 sm:space-x-reverse text-xs sm:text-sm text-gray-500">
                         <div className="flex items-center space-x-1 space-x-reverse">
-                          <Calendar className="w-4 h-4" />
+                          <Calendar className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                           <span>تم الإنشاء في {new Date(volume.created_at).toLocaleDateString("ar-SA")}</span>
                         </div>
                         <div className="flex items-center space-x-1 space-x-reverse">
-                          <BookOpen className="w-4 h-4" />
+                          <BookOpen className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                           <span>{issues.filter((i) => i.volume_number === volume.volume_number).length} عدد</span>
                         </div>
                       </div>
@@ -541,15 +546,18 @@ export default function AdminSettingsPage() {
         </Tabs>
       </div>
 
-      {/* نموذج إضافة/تعديل مجلد */}
       <Dialog open={showVolumeModal} onOpenChange={setShowVolumeModal}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="mx-4 max-w-md w-full">
           <DialogHeader>
-            <DialogTitle className="text-[#001f3f]">{editingVolume ? "تعديل المجلد" : "إضافة مجلد جديد"}</DialogTitle>
+            <DialogTitle className="text-[#001f3f] text-base sm:text-lg">
+              {editingVolume ? "تعديل المجلد" : "إضافة مجلد جديد"}
+            </DialogTitle>
           </DialogHeader>
           <form onSubmit={handleVolumeSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="volume_number">رقم المجلد *</Label>
+              <Label htmlFor="volume_number" className="text-sm sm:text-base">
+                رقم المجلد *
+              </Label>
               <Input
                 id="volume_number"
                 type="number"
@@ -558,29 +566,36 @@ export default function AdminSettingsPage() {
                 onChange={(e) => setVolumeForm({ ...volumeForm, volume_number: e.target.value })}
                 placeholder="1"
                 required
+                className="text-sm sm:text-base"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="volume_title">عنوان المجلد *</Label>
+              <Label htmlFor="volume_title" className="text-sm sm:text-base">
+                عنوان المجلد *
+              </Label>
               <Input
                 id="volume_title"
                 value={volumeForm.title}
                 onChange={(e) => setVolumeForm({ ...volumeForm, title: e.target.value })}
                 placeholder="المجلد الأول"
                 required
+                className="text-sm sm:text-base"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="volume_description">وصف المجلد</Label>
+              <Label htmlFor="volume_description" className="text-sm sm:text-base">
+                وصف المجلد
+              </Label>
               <Textarea
                 id="volume_description"
                 value={volumeForm.description}
                 onChange={(e) => setVolumeForm({ ...volumeForm, description: e.target.value })}
                 placeholder="وصف المجلد..."
                 rows={3}
+                className="text-sm sm:text-base"
               />
             </div>
-            <div className="flex justify-end gap-3 pt-4">
+            <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3 pt-4">
               <Button
                 type="button"
                 variant="outline"
@@ -590,10 +605,15 @@ export default function AdminSettingsPage() {
                   setVolumeForm({ volume_number: "", title: "", description: "" })
                 }}
                 disabled={submitting}
+                className="w-full sm:w-auto text-sm sm:text-base"
               >
                 إلغاء
               </Button>
-              <Button type="submit" disabled={submitting} className="bg-[#001f3f] hover:bg-[#003366]">
+              <Button
+                type="submit"
+                disabled={submitting}
+                className="bg-[#001f3f] hover:bg-[#003366] w-full sm:w-auto text-sm sm:text-base"
+              >
                 {submitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -610,22 +630,25 @@ export default function AdminSettingsPage() {
         </DialogContent>
       </Dialog>
 
-      {/* نموذج إضافة/تعديل عدد */}
       <Dialog open={showIssueModal} onOpenChange={setShowIssueModal}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="mx-4 max-w-md w-full">
           <DialogHeader>
-            <DialogTitle className="text-[#001f3f]">{editingIssue ? "تعديل العدد" : "إضافة عدد جديد"}</DialogTitle>
+            <DialogTitle className="text-[#001f3f] text-base sm:text-lg">
+              {editingIssue ? "تعديل العدد" : "إضافة عدد جديد"}
+            </DialogTitle>
           </DialogHeader>
           <form onSubmit={handleIssueSubmit} className="space-y-4">
             <div className="space-y-2">
-              <Label htmlFor="volume_select">المجلد *</Label>
+              <Label htmlFor="volume_select" className="text-sm sm:text-base">
+                المجلد *
+              </Label>
               <Select value={issueForm.volume_id} onValueChange={handleVolumeSelect} required>
-                <SelectTrigger>
+                <SelectTrigger className="text-sm sm:text-base">
                   <SelectValue placeholder="اختر المجلد" />
                 </SelectTrigger>
                 <SelectContent>
                   {volumes.map((volume) => (
-                    <SelectItem key={volume.id} value={volume.id}>
+                    <SelectItem key={volume.id} value={volume.id} className="text-sm sm:text-base">
                       المجلد {volume.volume_number} - {volume.title}
                     </SelectItem>
                   ))}
@@ -633,7 +656,9 @@ export default function AdminSettingsPage() {
               </Select>
             </div>
             <div className="space-y-2">
-              <Label htmlFor="issue_number">رقم العدد *</Label>
+              <Label htmlFor="issue_number" className="text-sm sm:text-base">
+                رقم العدد *
+              </Label>
               <Input
                 id="issue_number"
                 type="number"
@@ -642,29 +667,36 @@ export default function AdminSettingsPage() {
                 onChange={(e) => setIssueForm({ ...issueForm, issue_number: e.target.value })}
                 placeholder="1"
                 required
+                className="text-sm sm:text-base"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="issue_title">عنوان العدد *</Label>
+              <Label htmlFor="issue_title" className="text-sm sm:text-base">
+                عنوان العدد *
+              </Label>
               <Input
                 id="issue_title"
                 value={issueForm.title}
                 onChange={(e) => setIssueForm({ ...issueForm, title: e.target.value })}
                 placeholder="العدد الأول"
                 required
+                className="text-sm sm:text-base"
               />
             </div>
             <div className="space-y-2">
-              <Label htmlFor="issue_description">وصف العدد</Label>
+              <Label htmlFor="issue_description" className="text-sm sm:text-base">
+                وصف العدد
+              </Label>
               <Textarea
                 id="issue_description"
                 value={issueForm.description}
                 onChange={(e) => setIssueForm({ ...issueForm, description: e.target.value })}
                 placeholder="وصف العدد..."
                 rows={3}
+                className="text-sm sm:text-base"
               />
             </div>
-            <div className="flex justify-end gap-3 pt-4">
+            <div className="flex flex-col sm:flex-row justify-end gap-2 sm:gap-3 pt-4">
               <Button
                 type="button"
                 variant="outline"
@@ -674,10 +706,15 @@ export default function AdminSettingsPage() {
                   setIssueForm({ volume_id: "", volume_number: "", issue_number: "", title: "", description: "" })
                 }}
                 disabled={submitting}
+                className="w-full sm:w-auto text-sm sm:text-base"
               >
                 إلغاء
               </Button>
-              <Button type="submit" disabled={submitting} className="bg-[#FFD700] text-[#001f3f] hover:bg-yellow-400">
+              <Button
+                type="submit"
+                disabled={submitting}
+                className="bg-[#FFD700] text-[#001f3f] hover:bg-yellow-400 w-full sm:w-auto text-sm sm:text-base"
+              >
                 {submitting ? (
                   <>
                     <Loader2 className="w-4 h-4 mr-2 animate-spin" />
@@ -695,51 +732,53 @@ export default function AdminSettingsPage() {
       </Dialog>
 
       <Dialog open={showResearchModal} onOpenChange={setShowResearchModal}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="mx-2 sm:mx-4 max-w-4xl w-full max-h-[90vh] sm:max-h-[80vh] overflow-y-auto">
           <DialogHeader>
-            <DialogTitle className="text-[#001f3f]">إدارة أبحاث العدد: {selectedIssue?.title}</DialogTitle>
+            <DialogTitle className="text-[#001f3f] text-base sm:text-lg leading-tight">
+              إدارة أبحاث العدد: {selectedIssue?.title}
+            </DialogTitle>
           </DialogHeader>
 
           <Tabs value={researchTab} onValueChange={setResearchTab} className="space-y-4">
             <TabsList className="grid w-full grid-cols-2">
-              <TabsTrigger value="add" className="flex items-center gap-2">
-                <Plus className="w-4 h-4" />
+              <TabsTrigger value="add" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
                 إضافة
               </TabsTrigger>
-              <TabsTrigger value="remove" className="flex items-center gap-2">
-                <Trash2 className="w-4 h-4" />
+              <TabsTrigger value="remove" className="flex items-center gap-1 sm:gap-2 text-xs sm:text-sm">
+                <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
                 حذف
               </TabsTrigger>
             </TabsList>
 
             {/* تبويب الإضافة */}
             <TabsContent value="add" className="space-y-4">
-              <div className="text-sm text-gray-600 mb-4">الأبحاث المقبولة المتاحة للإضافة إلى هذا العدد</div>
-
-              {console.log("Rendering unassigned research:", unassignedResearch)}
+              <div className="text-xs sm:text-sm text-gray-600 mb-4">
+                الأبحاث المقبولة المتاحة للإضافة إلى هذا العدد
+              </div>
 
               {unassignedResearch.length === 0 ? (
                 <Card>
-                  <CardContent className="flex flex-col items-center justify-center py-8">
-                    <FileText className="w-8 h-8 text-gray-400 mb-2" />
-                    <p className="text-gray-500">لا توجد أبحاث متاحة للإضافة</p>
+                  <CardContent className="flex flex-col items-center justify-center py-6 sm:py-8">
+                    <FileText className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 mb-2" />
+                    <p className="text-sm sm:text-base text-gray-500">لا توجد أبحاث متاحة للإضافة</p>
                     <p className="text-xs text-gray-400 mt-1">عدد الأبحاث: {unassignedResearch.length}</p>
                   </CardContent>
                 </Card>
               ) : (
-                <div className="grid gap-4 max-h-96 overflow-y-auto">
+                <div className="grid gap-3 sm:gap-4 max-h-80 sm:max-h-96 overflow-y-auto">
                   {unassignedResearch.map((research) => (
                     <Card key={research.id} className="hover:shadow-sm transition-shadow">
-                      <CardContent className="p-4">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-[#001f3f] mb-1">
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-[#001f3f] mb-1 text-sm sm:text-base leading-tight">
                               {research.research_title || "عنوان غير متوفر"}
                             </h4>
-                            <p className="text-sm text-gray-600 mb-2">
+                            <p className="text-xs sm:text-sm text-gray-600 mb-2">
                               بواسطة: {research.researcher_name || "باحث غير محدد"}
                             </p>
-                            <p className="text-sm text-gray-500 line-clamp-2">
+                            <p className="text-xs sm:text-sm text-gray-500 line-clamp-2">
                               {research.research_abstract || "ملخص غير متوفر"}
                             </p>
                             <div className="text-xs text-gray-400 mt-2">
@@ -749,9 +788,10 @@ export default function AdminSettingsPage() {
                           <Button
                             size="sm"
                             onClick={() => handleAddResearchToIssue(research.id)}
-                            className="bg-[#001f3f] text-white hover:bg-[#003366] ml-4"
+                            className="bg-[#001f3f] text-white hover:bg-[#003366] w-full sm:w-auto text-xs sm:text-sm px-3 py-2"
                           >
-                            <Plus className="w-4 h-4" />
+                            <Plus className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="sm:hidden mr-2">إضافة</span>
                           </Button>
                         </div>
                       </CardContent>
@@ -763,32 +803,30 @@ export default function AdminSettingsPage() {
 
             {/* تبويب الحذف */}
             <TabsContent value="remove" className="space-y-4">
-              <div className="text-sm text-gray-600 mb-4">الأبحاث الموجودة في هذا العدد</div>
-
-              {console.log("Rendering issue research:", issueResearch)}
+              <div className="text-xs sm:text-sm text-gray-600 mb-4">الأبحاث الموجودة في هذا العدد</div>
 
               {issueResearch.length === 0 ? (
                 <Card>
-                  <CardContent className="flex flex-col items-center justify-center py-8">
-                    <FileText className="w-8 h-8 text-gray-400 mb-2" />
-                    <p className="text-gray-500">لا توجد أبحاث في هذا العدد</p>
+                  <CardContent className="flex flex-col items-center justify-center py-6 sm:py-8">
+                    <FileText className="w-6 h-6 sm:w-8 sm:h-8 text-gray-400 mb-2" />
+                    <p className="text-sm sm:text-base text-gray-500">لا توجد أبحاث في هذا العدد</p>
                     <p className="text-xs text-gray-400 mt-1">عدد الأبحاث: {issueResearch.length}</p>
                   </CardContent>
                 </Card>
               ) : (
-                <div className="grid gap-4 max-h-96 overflow-y-auto">
+                <div className="grid gap-3 sm:gap-4 max-h-80 sm:max-h-96 overflow-y-auto">
                   {issueResearch.map((research) => (
                     <Card key={research.id} className="hover:shadow-sm transition-shadow">
-                      <CardContent className="p-4">
-                        <div className="flex items-start justify-between">
-                          <div className="flex-1">
-                            <h4 className="font-semibold text-[#001f3f] mb-1">
+                      <CardContent className="p-3 sm:p-4">
+                        <div className="flex flex-col sm:flex-row items-start justify-between gap-3">
+                          <div className="flex-1 min-w-0">
+                            <h4 className="font-semibold text-[#001f3f] mb-1 text-sm sm:text-base leading-tight">
                               {research.research_title || "عنوان غير متوفر"}
                             </h4>
-                            <p className="text-sm text-gray-600 mb-2">
+                            <p className="text-xs sm:text-sm text-gray-600 mb-2">
                               بواسطة: {research.researcher_name || "باحث غير محدد"}
                             </p>
-                            <p className="text-sm text-gray-500 line-clamp-2">
+                            <p className="text-xs sm:text-sm text-gray-500 line-clamp-2">
                               {research.research_abstract || "ملخص غير متوفر"}
                             </p>
                             <div className="text-xs text-gray-400 mt-2">
@@ -799,9 +837,10 @@ export default function AdminSettingsPage() {
                             size="sm"
                             variant="destructive"
                             onClick={() => handleRemoveResearchFromIssue(research.id)}
-                            className="ml-4"
+                            className="w-full sm:w-auto text-xs sm:text-sm px-3 py-2"
                           >
-                            <Trash2 className="w-4 h-4" />
+                            <Trash2 className="w-3 h-3 sm:w-4 sm:h-4" />
+                            <span className="sm:hidden mr-2">حذف</span>
                           </Button>
                         </div>
                       </CardContent>
@@ -813,7 +852,11 @@ export default function AdminSettingsPage() {
           </Tabs>
 
           <div className="flex justify-end pt-4">
-            <Button variant="outline" onClick={() => setShowResearchModal(false)}>
+            <Button
+              variant="outline"
+              onClick={() => setShowResearchModal(false)}
+              className="w-full sm:w-auto text-sm sm:text-base"
+            >
               إغلاق
             </Button>
           </div>
