@@ -141,21 +141,32 @@ export default function AdminSettingsPage() {
     setResearchTab("add")
     setShowResearchModal(true)
 
-    // جلب الأبحاث غير المرتبطة والأبحاث في هذا العدد
     try {
       const [unassignedResult, issueResearchResult] = await Promise.all([
         getUnassignedResearch(),
         getResearchInIssue(issue.id),
       ])
 
+      console.log("Unassigned research result:", unassignedResult)
+      console.log("Issue research result:", issueResearchResult)
+
       if (unassignedResult.success) {
         setUnassignedResearch(unassignedResult.data)
+        console.log("Unassigned research data:", unassignedResult.data)
+      } else {
+        console.error("Failed to fetch unassigned research:", unassignedResult.message)
+        toast.error(unassignedResult.message || "حدث خطأ أثناء جلب الأبحاث غير المرتبطة")
       }
 
       if (issueResearchResult.success) {
         setIssueResearch(issueResearchResult.data)
+        console.log("Issue research data:", issueResearchResult.data)
+      } else {
+        console.error("Failed to fetch issue research:", issueResearchResult.message)
+        toast.error(issueResearchResult.message || "حدث خطأ أثناء جلب أبحاث العدد")
       }
     } catch (error) {
+      console.error("Error in handleManageResearch:", error)
       toast.error("حدث خطأ أثناء جلب بيانات الأبحاث")
     }
   }
@@ -705,11 +716,14 @@ export default function AdminSettingsPage() {
             <TabsContent value="add" className="space-y-4">
               <div className="text-sm text-gray-600 mb-4">الأبحاث المقبولة المتاحة للإضافة إلى هذا العدد</div>
 
+              {console.log("Rendering unassigned research:", unassignedResearch)}
+
               {unassignedResearch.length === 0 ? (
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center py-8">
                     <FileText className="w-8 h-8 text-gray-400 mb-2" />
                     <p className="text-gray-500">لا توجد أبحاث متاحة للإضافة</p>
+                    <p className="text-xs text-gray-400 mt-1">عدد الأبحاث: {unassignedResearch.length}</p>
                   </CardContent>
                 </Card>
               ) : (
@@ -719,9 +733,18 @@ export default function AdminSettingsPage() {
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-[#001f3f] mb-1">{research.research_title}</h4>
-                            <p className="text-sm text-gray-600 mb-2">بواسطة: {research.researcher_name}</p>
-                            <p className="text-sm text-gray-500 line-clamp-2">{research.research_abstract}</p>
+                            <h4 className="font-semibold text-[#001f3f] mb-1">
+                              {research.research_title || "عنوان غير متوفر"}
+                            </h4>
+                            <p className="text-sm text-gray-600 mb-2">
+                              بواسطة: {research.researcher_name || "باحث غير محدد"}
+                            </p>
+                            <p className="text-sm text-gray-500 line-clamp-2">
+                              {research.research_abstract || "ملخص غير متوفر"}
+                            </p>
+                            <div className="text-xs text-gray-400 mt-2">
+                              ID: {research.id} | Issue ID: {research.issue_id || "null"}
+                            </div>
                           </div>
                           <Button
                             size="sm"
@@ -742,11 +765,14 @@ export default function AdminSettingsPage() {
             <TabsContent value="remove" className="space-y-4">
               <div className="text-sm text-gray-600 mb-4">الأبحاث الموجودة في هذا العدد</div>
 
+              {console.log("Rendering issue research:", issueResearch)}
+
               {issueResearch.length === 0 ? (
                 <Card>
                   <CardContent className="flex flex-col items-center justify-center py-8">
                     <FileText className="w-8 h-8 text-gray-400 mb-2" />
                     <p className="text-gray-500">لا توجد أبحاث في هذا العدد</p>
+                    <p className="text-xs text-gray-400 mt-1">عدد الأبحاث: {issueResearch.length}</p>
                   </CardContent>
                 </Card>
               ) : (
@@ -756,9 +782,18 @@ export default function AdminSettingsPage() {
                       <CardContent className="p-4">
                         <div className="flex items-start justify-between">
                           <div className="flex-1">
-                            <h4 className="font-semibold text-[#001f3f] mb-1">{research.research_title}</h4>
-                            <p className="text-sm text-gray-600 mb-2">بواسطة: {research.researcher_name}</p>
-                            <p className="text-sm text-gray-500 line-clamp-2">{research.research_abstract}</p>
+                            <h4 className="font-semibold text-[#001f3f] mb-1">
+                              {research.research_title || "عنوان غير متوفر"}
+                            </h4>
+                            <p className="text-sm text-gray-600 mb-2">
+                              بواسطة: {research.researcher_name || "باحث غير محدد"}
+                            </p>
+                            <p className="text-sm text-gray-500 line-clamp-2">
+                              {research.research_abstract || "ملخص غير متوفر"}
+                            </p>
+                            <div className="text-xs text-gray-400 mt-2">
+                              ID: {research.id} | Issue ID: {research.issue_id}
+                            </div>
                           </div>
                           <Button
                             size="sm"
