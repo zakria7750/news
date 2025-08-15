@@ -40,7 +40,7 @@ const adminSections = [
     stats: "12 عدد منشور",
   },
   {
-    title: "إدارة هيئة التحرير",
+    title: "إدارة ه��ئة التحرير",
     description: "إضافة وتعديل وحذف أعضاء هيئة التحرير والمراجعين",
     href: "/admin/editorial-board",
     icon: (
