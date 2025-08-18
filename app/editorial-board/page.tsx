@@ -6,38 +6,49 @@ import { supabase, type EditorialBoardMember } from "@/lib/supabase/client"
 // مكون بطاقة العضو
 function MemberCard({ member }: { member: EditorialBoardMember }) {
   return (
-    <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group border border-gray-100">
-      <div className="relative">
-        <div className="aspect-square overflow-hidden">
-          <Image
-            src={member.image_url || "/placeholder.svg"}
-            alt={member.name}
-            width={200}
-            height={200}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
+    <div className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-gray-100 hover:border-[#FFD700]/30 hover:-translate-y-1">
+      <div className="relative p-6 pb-4">
+        {/* إطار بيضاوي للصورة مع تدرج ذهبي */}
+        <div className="relative mx-auto w-32 h-40 sm:w-36 sm:h-48 lg:w-40 lg:h-52 mb-4">
+          <div className="absolute inset-0 bg-gradient-to-br from-[#FFD700] via-[#FFD700] to-[#FFA500] rounded-full p-1 shadow-lg group-hover:shadow-xl group-hover:shadow-[#FFD700]/25 transition-all duration-300">
+            <div className="w-full h-full rounded-full overflow-hidden bg-white p-1">
+              <div className="w-full h-full rounded-full overflow-hidden relative">
+                <Image
+                  src={member.image_url || "/placeholder.svg"}
+                  alt={member.name}
+                  width={200}
+                  height={260}
+                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-300"
+                />
+                {/* تدرج لوني أنيق عند التمرير */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#001f3f]/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full" />
+              </div>
+            </div>
+          </div>
+          {/* إضافة نقاط زخرفية ذهبية */}
+          <div className="absolute -top-2 -right-2 w-4 h-4 bg-[#FFD700] rounded-full opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-[#FFD700] rounded-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"></div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-[#001f3f]/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
-      <div className="p-6">
-        <h3 className="text-xl font-bold text-[#001f3f] mb-2 group-hover:text-[#FFD700] transition-colors duration-300">
+      <div className="px-4 sm:px-6 pb-6">
+        <h3 className="text-lg sm:text-xl font-bold text-[#001f3f] mb-2 text-center group-hover:text-[#FFD700] transition-colors duration-300 leading-tight">
           {member.name}
         </h3>
-        <div className="flex items-center justify-between mb-3">
-          <span className="inline-block bg-[#FFD700] text-[#001f3f] px-3 py-1 rounded-full text-sm font-semibold">
+        <div className="flex justify-center mb-3">
+          <span className="inline-block bg-[#FFD700] text-[#001f3f] px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-semibold shadow-md text-center">
             {member.position}
           </span>
         </div>
-        <div className="flex items-center text-gray-600">
-          <svg className="w-4 h-4 ml-2 text-[#FFD700]" fill="currentColor" viewBox="0 0 20 20">
+        <div className="flex items-center justify-center text-gray-600">
+          <svg className="w-4 h-4 ml-2 text-[#FFD700] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"
               d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-sm">{member.country}</span>
+          <span className="text-xs sm:text-sm text-center">{member.country}</span>
         </div>
       </div>
     </div>
@@ -57,7 +68,7 @@ function MembersSection({ title, members }: { title: string; members: EditorialB
         </h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
         {members.map((member) => (
           <MemberCard key={member.id} member={member} />
         ))}
