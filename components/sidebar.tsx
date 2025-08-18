@@ -33,9 +33,9 @@ export function Sidebar({ isMobileMenuOpen, onMobileMenuClose }: SidebarProps) {
       {/* Sidebar */}
       <aside
         className={`${
-          isExpanded ? "overflow-y-scroll" : "overflow-hidden"
+          isExpanded || isMobileMenuOpen ? "overflow-y-scroll" : "overflow-hidden"
         } fixed md:sticky top-0 inset-0 right-0 md:right-auto md:left-0 z-50 h-screen bg-[#001f3f] text-white transition-all duration-300 ease-in-out ${
-          isExpanded ? "w-64" : "w-16"
+          isExpanded || isMobileMenuOpen ? "w-64" : "w-16"
         } ${isMobileMenuOpen ? "translate-x-0" : "translate-x-full md:translate-x-0"}`}
         onMouseEnter={() => setIsExpanded(true)}
         onMouseLeave={() => setIsExpanded(false)}
@@ -46,7 +46,7 @@ export function Sidebar({ isMobileMenuOpen, onMobileMenuClose }: SidebarProps) {
             <div className="w-8 h-8 bg-[#FFD700] rounded-full flex items-center justify-center flex-shrink-0">
               <span className="text-[#001f3f] font-bold text-sm">و</span>
             </div>
-            {isExpanded && <span className="font-bold text-sm whitespace-nowrap">مجلة وعي</span>}
+            {(isExpanded || isMobileMenuOpen) && <span className="font-bold text-sm whitespace-nowrap">مجلة وعي</span>}
           </div>
         </div>
 
@@ -67,7 +67,7 @@ export function Sidebar({ isMobileMenuOpen, onMobileMenuClose }: SidebarProps) {
                     }`}
                   >
                     <Icon size={20} className="flex-shrink-0" />
-                    {isExpanded && (
+                    {(isExpanded || isMobileMenuOpen) && (
                       <>
                         <span className="font-medium whitespace-nowrap">{item.name}</span>
                         <ChevronRight
