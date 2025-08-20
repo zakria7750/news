@@ -3,6 +3,7 @@
 import type React from "react"
 import Link from "next/link"
 import { useState } from "react"
+import SocialMediaButtons from "./SocialMediaButtons"
 import { Phone, Mail, MapPin, ChevronUp, Loader2, BookOpen, Users, Award, Globe } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { subscribeToNewsletter } from "@/app/actions/news-actions"
@@ -119,6 +120,7 @@ export default function Footer() {
 
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3 space-x-reverse">
+                    <SocialMediaButtons/>
                     <div className="w-8 h-8 bg-[#FFD700]/20 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
                       <MapPin size={16} className="text-[#FFD700]" />
                     </div>
