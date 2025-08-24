@@ -74,7 +74,7 @@ export default function Footer() {
               </div>
               <div>
                 <h3 className="text-xl font-bold text-[#FFD700]">مجلة وعي</h3>
-                <p className="text-sm text-gray-300">مجلة أكاديمية محكمة</p>
+                <p className="text-sm text-gray-300">مجلة وعي للدراسات والبحوث العلمية</p>
               </div>
             </div>
 
