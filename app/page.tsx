@@ -7,10 +7,10 @@ import Image from "next/image"
 
 export default async function HomePage() {
   const newsResult = await getNews()
-  const latestNews = newsResult.success ? newsResult.data.slice(0, 3) : []
+  const latestNews = newsResult.success ? newsResult.data.slice(0, 3) : []*/}
 
   return (
-    <div className="min-h-screen">*/}
+    <div className="min-h-screen">
       {/* قسم الهيرو */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* خلفية الصورة مع تأثير parallax */}
@@ -228,4 +228,4 @@ export default async function HomePage() {
       </section>
     </div>
   )
-}
+
