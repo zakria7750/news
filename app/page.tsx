@@ -3,10 +3,10 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye } from "lucide-react"
 {/*import { getNews } from "@/app/actions/news-actions"
-import Image from "next/image"
+import Image from "next/image"*/}
 
 export default async function HomePage() {
-  const newsResult = await getNews()
+  {/*const newsResult = await getNews()
   const latestNews = newsResult.success ? newsResult.data.slice(0, 3) : []*/}
 
   return (
@@ -229,3 +229,4 @@ export default async function HomePage() {
     </div>
   )
 
+}
