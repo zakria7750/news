@@ -2,7 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye } from "lucide-react"
-import { getNews } from "@/app/actions/news-actions"
+{/*import { getNews } from "@/app/actions/news-actions"
 import Image from "next/image"
 
 export default async function HomePage() {
@@ -10,7 +10,7 @@ export default async function HomePage() {
   const latestNews = newsResult.success ? newsResult.data.slice(0, 3) : []
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen">*/}
       {/* قسم الهيرو */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* خلفية الصورة مع تأثير parallax */}
@@ -106,7 +106,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
+      {/* <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#001f3f] mb-4 hover:text-[#FFD700] transition-colors duration-300">
@@ -184,7 +184,7 @@ export default async function HomePage() {
             </Button>
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* قسم إضافي للمحتوى مع تحسينات */}
       <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
