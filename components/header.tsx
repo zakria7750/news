@@ -25,7 +25,7 @@ export function Header({ onMenuToggle, isMobileMenuOpen }: HeaderProps) {
             </div>
             <div>
               <h1 className="text-xl md:text-2xl font-bold text-[#001f3f]">مجلة وعي</h1>
-              <p className="text-sm md:text-base text-gray-600">مجلة أكاديمية محكمة</p>
+              <p className="text-sm md:text-base text-gray-600">مجلة وعي للدراسات والبحوث العلمية</p>
             </div>
           </div>
 
