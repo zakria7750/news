@@ -106,7 +106,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
+       <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-[#001f3f] mb-4 hover:text-[#FFD700] transition-colors duration-300">
@@ -184,7 +184,7 @@ export default async function HomePage() {
             </Button>
           </div>
         </div>
-      </section>*/}
+      </section>
 
       {/* قسم إضافي للمحتوى مع تحسينات */}
       <section className="py-12 md:py-16 bg-gradient-to-b from-gray-50 to-white">
