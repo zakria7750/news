@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye, BookOpen, Target, Lightbulb, GraduationCap, Building, Users, Microscope, Network,Shield } from "lucide-react"
+import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye, BookOpen, Target, Lightbulb, GraduationCap, Building, Users, Microscope, Network } from "lucide-react"
 import { getNews } from "@/app/actions/news-actions"
 import Image from "next/image"
 
@@ -304,116 +304,7 @@ export default async function HomePage() {
         </div>
     
       </section>
-      +<section className="py-16 md:py-20 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
-           {/* قسم دليل النشر */}
-+          <div className="mb-20">
-+            <div className="relative">
-+              {/* خلفية مزخرفة */}
-+              <div className="absolute inset-0 bg-gradient-to-r from-[#001f3f]/5 via-[#FFD700]/5 to-[#001f3f]/5 rounded-3xl"></div>
-+              
-+              <div className="relative bg-gradient-to-br from-white via-blue-50/20 to-white rounded-3xl shadow-2xl border border-gray-100 overflow-hidden">
-+                {/* عناصر تزيينية */}
-+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-[#FFD700]/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
-+                <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[#001f3f]/10 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
-+                
-+                <div className="relative p-8 md:p-12 lg:p-16">
-+                  <div className="grid lg:grid-cols-2 gap-12 items-center">
-+                    {/* المحتوى النصي */}
-+                    <div className="order-2 lg:order-1">
-+                      {/* العنوان */}
-+                      <div className="mb-8">
-+                        <div className="flex items-center mb-6">
-+                          <div className="w-16 h-16 bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-2xl flex items-center justify-center ml-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
-+                            <BookOpen className="w-8 h-8 text-[#FFD700]" />
-+                          </div>
-+                          <div>
-+                            <h3 className="text-3xl md:text-4xl font-bold text-[#001f3f] mb-2">
-+                              دليل النشر
-+                            </h3>
-+                            <div className="w-20 h-1 bg-gradient-to-r from-[#FFD700] to-[#f4c430] rounded-full"></div>
-+                          </div>
-+                        </div>
-+                      </div>
-+
-+                      {/* النص الوصفي */}
-+                      <div className="space-y-6 mb-8">
-+                        <p className="text-lg md:text-xl text-gray-700 leading-relaxed font-medium">
-+                          دليل شامل للباحثين الأكاديميين حول معايير النشر العلمي الرصين، وفقًا لسياسات واضحة تضمن الأصالة، المصداقية، والالتزام بالمعايير الأكاديمية العالمية.
-+                        </p>
-+                        
-+                        <div className="bg-gradient-to-r from-[#001f3f]/5 to-[#FFD700]/5 rounded-2xl p-6 border-r-4 border-[#FFD700]">
-+                          <p className="text-gray-700 text-lg leading-relaxed">
-+                            تشمل سياسات النشر لدينا: مراجعة الأبحاث عبر خبراء متخصصين، اعتماد التوثيق وفق أنماط مرجعية معترف بها، وضمان الالتزام بأخلاقيات البحث العلمي.
-+                          </p>
-+                        </div>
-+                      </div>
-+
-+                      {/* الزر */}
-+                      <div className="flex flex-col sm:flex-row gap-4">
-+                        <Button
-+                          asChild
-+                          size="lg"
-+                          className="bg-gradient-to-r from-[#FFD700] to-[#f4c430] hover:from-[#f4c430] hover:to-[#FFD700] text-[#001f3f] font-bold px-8 py-4 text-lg rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group border-2 border-transparent hover:border-[#001f3f]/20"
-+                        >
-+                          <Link href="/submission-guidelines" className="flex items-center gap-3">
-+                            <Eye className="w-6 h-6 group-hover:scale-110 transition-transform duration-300" />
-+                            تعرف على التفاصيل
-+                            <ArrowLeft className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
-+                          </Link>
-+                        </Button>
-+                      </div>
-+                    </div>
-+
-+                    {/* الجانب المرئي */}
-+                    <div className="order-1 lg:order-2">
-+                      <div className="relative">
-+                        {/* البطاقات المتداخلة */}
-+                        <div className="relative space-y-4">
-+                          {/* البطاقة الأولى */}
-+                          <div className="bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-2xl p-6 text-white shadow-xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
-+                            <div className="flex items-center mb-4">
-+                              <div className="w-12 h-12 bg-[#FFD700] rounded-xl flex items-center justify-center ml-3">
-+                                <Shield className="w-6 h-6 text-[#001f3f]" />
-+                              </div>
-+                              <h4 className="text-xl font-bold">مراجعة متخصصة</h4>
-+                            </div>
-+                            <p className="text-blue-100">خبراء في كل مجال علمي</p>
-+                          </div>
-+
-+                          {/* البطاقة الثانية */}
-+                          <div className="bg-gradient-to-br from-[#FFD700] to-[#f4c430] rounded-2xl p-6 text-[#001f3f] shadow-xl transform -rotate-1 hover:rotate-0 transition-transform duration-500 relative z-10">
-+                            <div className="flex items-center mb-4">
-+                              <div className="w-12 h-12 bg-[#001f3f] rounded-xl flex items-center justify-center ml-3">
-+                                <Target className="w-6 h-6 text-[#FFD700]" />
-+                              </div>
-+                              <h4 className="text-xl font-bold">معايير عالمية</h4>
-+                            </div>
-+                            <p className="text-[#001f3f]/80">التوثيق والمراجع المعتمدة</p>
-+                          </div>
-+
-+                          {/* البطاقة الثالثة */}
-+                          <div className="bg-white rounded-2xl p-6 shadow-xl border-2 border-gray-100 transform rotate-1 hover:rotate-0 transition-transform duration-500">
-+                            <div className="flex items-center mb-4">
-+                              <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center ml-3">
-+                                <Lightbulb className="w-6 h-6 text-white" />
-+                              </div>
-+                              <h4 className="text-xl font-bold text-[#001f3f]">أخلاقيات البحث</h4>
-+                            </div>
-+                            <p className="text-gray-600">الأصالة والمصداقية العلمية</p>
-+                          </div>
-+                        </div>
-+
-+                        {/* عنصر تزييني */}
-+                        <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#FFD700] rounded-full opacity-30 animate-pulse"></div>
-+                        <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#001f3f] rounded-full opacity-20 animate-pulse"></div>
-+                      </div>
-+                    </div>
-+                  </div>
-+                </div>
-+              </div>
-+            </div>
-+          </div>
-      </section>
+   
        <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
