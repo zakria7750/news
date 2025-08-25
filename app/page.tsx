@@ -302,8 +302,6 @@ export default async function HomePage() {
             </Button>
           </div>
         </div>
-      </section>
-      <section className="py-16 md:py-20 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
          {/* قسم دليل النشر */}
 +          <div className="mb-20">
 +            <div className="relative">
