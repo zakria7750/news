@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye } from "lucide-react"
+import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye, BookOpen, Target, Lightbulb, GraduationCap, Building, Users, Microscope, Network } from "lucide-react"
 import { getNews } from "@/app/actions/news-actions"
 import Image from "next/image"
 
@@ -102,6 +102,204 @@ export default async function HomePage() {
                 </p>
               </CardContent>
             </Card>
+          </div>
+        </div>
+      </section>
+
+      {/* قسم معلومات المجلة المختصرة */}
+      <section className="py-16 md:py-20 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
+        {/* عناصر تزيينية في الخلفية */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-32 h-32 border-2 border-[#001f3f] rounded-full"></div>
+          <div className="absolute bottom-20 right-10 w-20 h-20 bg-[#FFD700] rounded-full"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-[#001f3f] rounded-full"></div>
+        </div>
+
+        <div className="container-custom relative z-10">
+          {/* العنوان الرئيسي */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#001f3f] mb-6 hover:text-[#FFD700] transition-colors duration-300">
+              تعرف على مجلة وعي
+            </h2>
+            <div className="w-24 h-1 bg-[#FFD700] mx-auto mb-6"></div>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              منصة علمية محكمة تسعى لنشر المعرفة وتطوير البحث الأكاديمي في مختلف المجالات العلمية
+            </p>
+          </div>
+
+          {/* القسم الأول: عن المجلة */}
+          <div className="mb-20">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-2 lg:order-1">
+                <div className="bg-white rounded-3xl shadow-xl p-8 md:p-10 border-l-4 border-[#001f3f] hover:shadow-2xl transition-all duration-500 group">
+                  <div className="flex items-center mb-6">
+                    <div className="w-14 h-14 bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-xl flex items-center justify-center ml-4 group-hover:scale-110 transition-transform duration-300">
+                      <BookOpen className="w-7 h-7 text-[#FFD700]" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold text-[#001f3f] group-hover:text-[#002a5c] transition-colors duration-300">
+                      عن المجلة
+                    </h3>
+                  </div>
+                  <p className="text-gray-700 text-lg leading-relaxed group-hover:text-gray-900 transition-colors duration-300">
+                    مجلة علمية محكَّمة تصدر عن أكاديمية المعرفة الدولية، متخصصة في نشر الأبحاث والدراسات الأصيلة في مختلف مجالات العلوم الإنسانية والتطبيقية. تهدف إلى الإسهام في تطوير المعرفة العلمية وتعزيز ثقافة البحث الرصين.
+                  </p>
+                </div>
+              </div>
+              <div className="order-1 lg:order-2">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#001f3f]/20 to-[#FFD700]/20 rounded-3xl transform rotate-3 group-hover:rotate-6 transition-transform duration-300"></div>
+                  <div className="relative bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-3xl p-8 text-white shadow-2xl">
+                    <div className="text-center">
+                      <Hash className="w-16 h-16 text-[#FFD700] mx-auto mb-4" />
+                      <h4 className="text-xl font-bold mb-2">مجلة محكمة</h4>
+                      <p className="text-blue-100">معايير علمية عالمية</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* القسم الثاني: مجالات النشر */}
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-2xl md:text-3xl font-bold text-[#001f3f] mb-4">مجالات النشر</h3>
+              <div className="w-16 h-1 bg-[#FFD700] mx-auto"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-t-4 border-blue-500 group hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <GraduationCap className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="font-bold text-lg text-[#001f3f] mb-2 group-hover:text-blue-600 transition-colors duration-300">
+                  العلوم التربوية والنفسية
+                </h4>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-t-4 border-emerald-500 group hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <BookOpen className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="font-bold text-lg text-[#001f3f] mb-2 group-hover:text-emerald-600 transition-colors duration-300">
+                  الدراسات الإسلامية واللغة العربية
+                </h4>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-t-4 border-purple-500 group hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Building className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="font-bold text-lg text-[#001f3f] mb-2 group-hover:text-purple-600 transition-colors duration-300">
+                  العلوم الإدارية والاقتصادية
+                </h4>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-t-4 border-rose-500 group hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-rose-500 to-rose-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Users className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="font-bold text-lg text-[#001f3f] mb-2 group-hover:text-rose-600 transition-colors duration-300">
+                  العلوم الاجتماعية والإنسانية
+                </h4>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-t-4 border-cyan-500 group hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Microscope className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="font-bold text-lg text-[#001f3f] mb-2 group-hover:text-cyan-600 transition-colors duration-300">
+                  العلوم التطبيقية والتقنية
+                </h4>
+              </div>
+
+              <div className="bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 p-6 border-t-4 border-orange-500 group hover:scale-105">
+                <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                  <Network className="w-6 h-6 text-white" />
+                </div>
+                <h4 className="font-bold text-lg text-[#001f3f] mb-2 group-hover:text-orange-600 transition-colors duration-300">
+                  مجالات بحثية متعددة التخصصات
+                </h4>
+              </div>
+            </div>
+          </div>
+
+          {/* القسم الثالث: أهداف المجلة */}
+          <div className="mb-16">
+            <div className="grid lg:grid-cols-2 gap-12 items-center">
+              <div className="order-1 lg:order-1">
+                <div className="bg-gradient-to-br from-[#FFD700] to-[#f4c430] rounded-3xl shadow-xl p-8 md:p-10 text-[#001f3f] hover:shadow-2xl transition-all duration-500 group">
+                  <div className="flex items-center mb-6">
+                    <div className="w-14 h-14 bg-[#001f3f] rounded-xl flex items-center justify-center ml-4 group-hover:scale-110 transition-transform duration-300">
+                      <Target className="w-7 h-7 text-[#FFD700]" />
+                    </div>
+                    <h3 className="text-2xl md:text-3xl font-bold group-hover:text-[#002a5c] transition-colors duration-300">
+                      أهداف المجلة
+                    </h3>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-center">
+                      <div className="w-6 h-6 bg-[#001f3f] rounded-full flex items-center justify-center ml-3 flex-shrink-0">
+                        <span className="text-[#FFD700] font-bold text-sm">✓</span>
+                      </div>
+                      <p className="text-lg">دعم البحث العلمي الرصين والجودة العالية</p>
+                    </div>
+                    
+                    <div className="flex items-center">
+                      <div className="w-6 h-6 bg-[#001f3f] rounded-full flex items-center justify-center ml-3 flex-shrink-0">
+                        <span className="text-[#FFD700] font-bold text-sm">✓</span>
+                      </div>
+                      <p className="text-lg">تشجيع الباحثين وطلاب الدراسات العليا</p>
+                    </div>
+
+                    <div className="flex items-center">
+                      <div className="w-6 h-6 bg-[#001f3f] rounded-full flex items-center justify-center ml-3 flex-shrink-0">
+                        <span className="text-[#FFD700] font-bold text-sm">✓</span>
+                      </div>
+                      <p className="text-lg">الالتزام بالمعايير الأكاديمية الدولية</p>
+                    </div>
+
+                    <div className="flex items-center">
+                      <div className="w-6 h-6 bg-[#001f3f] rounded-full flex items-center justify-center ml-3 flex-shrink-0">
+                        <span className="text-[#FFD700] font-bold text-sm">✓</span>
+                      </div>
+                      <p className="text-lg">تعزيز التواصل العلمي محلياً ودولياً</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="order-2 lg:order-2">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-[#001f3f]/10 to-[#FFD700]/10 rounded-3xl transform -rotate-3"></div>
+                  <div className="relative bg-white rounded-3xl shadow-2xl p-8 border-2 border-gray-100">
+                    <div className="text-center">
+                      <div className="w-20 h-20 bg-gradient-to-br from-[#001f3f] to-[#002a5c] rounded-full flex items-center justify-center mx-auto mb-6">
+                        <Lightbulb className="w-10 h-10 text-[#FFD700]" />
+                      </div>
+                      <h4 className="text-2xl font-bold text-[#001f3f] mb-4">رؤيتنا</h4>
+                      <p className="text-gray-700 text-lg leading-relaxed">
+                        أن نكون المجلة الأكاديمية الرائدة في نشر البحوث العلمية المحكمة التي تساهم في تطوير المعرفة وخدمة المجتمع
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* زر تعرف أكثر */}
+          <div className="text-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-[#001f3f] to-[#002a5c] hover:from-[#002a5c] hover:to-[#001f3f] text-white px-10 py-4 text-lg rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group border-2 border-transparent hover:border-[#FFD700]"
+            >
+              <Link href="/about" className="flex items-center gap-3">
+                <Sparkles className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+                تعرف أكثر عن المجلة
+                <ArrowLeft className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>
