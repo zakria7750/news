@@ -303,6 +303,7 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      <section className="py-16 md:py-20 bg-gradient-to-b from-white via-blue-50/30 to-white relative overflow-hidden">
          {/* قسم دليل النشر */}
 +          <div className="mb-20">
 +            <div className="relative">
@@ -411,6 +412,7 @@ export default async function HomePage() {
 +              </div>
 +            </div>
 +          </div>
+      </section>
        <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
