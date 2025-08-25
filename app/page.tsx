@@ -410,6 +410,7 @@ export default async function HomePage() {
 +              </div>
 +            </div>
 +          </div>
+      </section>
        <section className="py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
