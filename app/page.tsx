@@ -1,13 +1,17 @@
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye, BookOpen, Target, Lightbulb, GraduationCap, Building, Users, Microscope, Network, FileText, CheckCircle } from "lucide-react"
+import { Hash, Languages, ArrowLeft, Sparkles, Clock, Eye, BookOpen, Target, Lightbulb, GraduationCap, Building, Users, Microscope, Network, FileText, CheckCircle, Calendar } from "lucide-react"
 import { getNews } from "@/app/actions/news-actions"
+import { getLatestIssues } from "@/app/actions/public-issues-actions"
 import Image from "next/image"
 
 export default async function HomePage() {
   const newsResult = await getNews()
   const latestNews = newsResult.success ? newsResult.data.slice(0, 3) : []
+  
+  const issuesResult = await getLatestIssues(2)
+  const latestIssues = issuesResult.success ? issuesResult.data : []
 
   return (
     <div className="min-h-screen">
@@ -495,6 +499,126 @@ export default async function HomePage() {
                 </CardContent>
               </Card>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* قسم الأعداد الحديثة */}
+      <section className="py-16 md:py-20 bg-gradient-to-b from-white via-gray-50/50 to-white relative overflow-hidden">
+        {/* عناصر تزيينية في الخلفية */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 right-10 w-32 h-32 border-2 border-[#FFD700] rounded-full"></div>
+          <div className="absolute bottom-20 left-10 w-20 h-20 bg-[#001f3f] rounded-full"></div>
+          <div className="absolute top-1/2 right-1/2 transform translate-x-1/2 -translate-y-1/2 w-40 h-40 border border-[#FFD700] rounded-full"></div>
+        </div>
+
+        <div className="container-custom relative z-10">
+          {/* العنوان الرئيسي */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-[#001f3f] mb-6 hover:text-[#FFD700] transition-colors duration-300">
+              الأعداد الحديثة
+            </h2>
+            <div className="w-24 h-1 bg-[#FFD700] mx-auto mb-6"></div>
+            <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              اطلع على آخر الأعداد المنشورة من مجلة وعي واكتشف أحدث البحوث والدراسات الأكاديمية
+            </p>
+          </div>
+
+          {/* عرض الأعداد */}
+          {latestIssues.length > 0 ? (
+            <div className="grid md:grid-cols-2 gap-8 mb-12">
+              {latestIssues.map((issue, index) => (
+                <div
+                  key={issue.id}
+                  className="bg-white rounded-3xl shadow-xl border-2 border-gray-100 hover:border-[#FFD700]/30 hover:shadow-2xl transition-all duration-500 overflow-hidden group"
+                >
+                  {/* رأس العدد */}
+                  <div className="bg-gradient-to-r from-[#001f3f] to-[#002a5c] p-6 md:p-8 text-white relative">
+                    {/* شارة العدد الجديد */}
+                    {index === 0 && (
+                      <div className="absolute top-4 left-4 bg-[#FFD700] text-[#001f3f] px-3 py-1 rounded-full text-sm font-bold animate-pulse">
+                        الأحدث
+                      </div>
+                    )}
+                    
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="bg-[#FFD700] text-[#001f3f] px-4 py-2 rounded-full text-sm font-bold">
+                        المجلد {issue.volume_number} - العدد {issue.issue_number}
+                      </div>
+                      <BookOpen className="w-8 h-8 text-[#FFD700] group-hover:scale-110 transition-transform duration-300" />
+                    </div>
+                    
+                    <h3 className="text-xl md:text-2xl font-bold mb-3 group-hover:text-[#FFD700] transition-colors duration-300 line-clamp-2">
+                      {issue.title}
+                    </h3>
+                    
+                    <div className="flex items-center text-blue-100 text-sm">
+                      <Calendar className="w-4 h-4 ml-2" />
+                      <span>{new Date(issue.publication_date).toLocaleDateString("ar-SA")}</span>
+                    </div>
+                  </div>
+
+                  {/* محتوى العدد */}
+                  <div className="p-6 md:p-8">
+                    <p className="text-gray-600 text-lg leading-relaxed mb-6 line-clamp-3 group-hover:text-gray-800 transition-colors duration-300">
+                      {issue.description || "وصف العدد غير متوفر حالياً. يمكنك تصفح العدد للاطلاع على المحتوى والأبحاث المتاحة."}
+                    </p>
+
+                    {/* معلومات إضافية */}
+                    <div className="bg-gray-50 rounded-2xl p-4 mb-6 group-hover:bg-blue-50 transition-colors duration-300">
+                      <div className="flex items-center justify-between">
+                        <div className="text-sm text-gray-600">
+                          <span className="font-semibold">المجلد:</span> {issue.volumes?.title || `المجلد ${issue.volume_number}`}
+                        </div>
+                        <div className="flex items-center text-[#001f3f]">
+                          <Eye className="w-4 h-4 ml-1" />
+                          <span className="text-sm font-medium">مفتوح للقراءة</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* زر عرض العدد */}
+                    <Button
+                      asChild
+                      size="lg"
+                      className="w-full bg-gradient-to-r from-[#001f3f] to-[#002a5c] hover:from-[#002a5c] hover:to-[#001f3f] text-white px-6 py-3 text-lg rounded-2xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group/btn border-2 border-transparent hover:border-[#FFD700]"
+                    >
+                      <Link href={`/issues/${issue.id}`} className="flex items-center justify-center gap-3">
+                        <Eye className="w-5 h-5 group-hover/btn:scale-110 transition-transform duration-300" />
+                        عرض العدد
+                        <ArrowLeft className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300" />
+                      </Link>
+                    </Button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            /* رسالة عدم وجود أعداد */
+            <div className="text-center py-16">
+              <div className="w-24 h-24 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                <BookOpen className="w-12 h-12 text-gray-400" />
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">لا توجد أعداد منشورة حالياً</h3>
+              <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+                نعمل حالياً على إعداد أول عدد من المجلة. ترقبوا قريباً أحدث البحوث والدراسات الأكاديمية.
+              </p>
+            </div>
+          )}
+
+          {/* زر عرض جميع الأعداد */}
+          <div className="text-center">
+            <Button
+              asChild
+              size="lg"
+              className="bg-gradient-to-r from-[#FFD700] to-[#f4c430] hover:from-[#f4c430] hover:to-[#FFD700] text-[#001f3f] px-10 py-4 text-lg rounded-full shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group border-2 border-transparent hover:border-[#001f3f] font-bold"
+            >
+              <Link href="/issues" className="flex items-center gap-3">
+                <BookOpen className="w-6 h-6 group-hover:rotate-12 transition-transform duration-300" />
+                عرض جميع الأعداد
+                <ArrowLeft className="w-6 h-6 group-hover:translate-x-1 transition-transform duration-300" />
+              </Link>
+            </Button>
           </div>
         </div>
       </section>

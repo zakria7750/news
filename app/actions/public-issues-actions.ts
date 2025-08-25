@@ -28,6 +28,32 @@ export async function getPublishedIssues() {
   }
 }
 
+export async function getLatestIssues(limit: number = 2) {
+  try {
+    const supabase = await createClient()
+
+    const { data, error } = await supabase
+      .from("issues")
+      .select(`
+        *,
+        volumes (
+          title,
+          volume_number
+        )
+      `)
+      .order("volume_number", { ascending: false })
+      .order("issue_number", { ascending: false })
+      .limit(limit)
+
+    if (error) throw error
+
+    return { success: true, data: data || [] }
+  } catch (error) {
+    console.error("Error fetching latest issues:", error)
+    return { success: false, data: [], message: "حدث خطأ أثناء جلب آخر الأعداد" }
+  }
+}
+
 export async function getIssueWithResearch(issueId: string) {
   try {
     const supabase = await createClient()
